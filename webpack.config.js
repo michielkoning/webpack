@@ -80,10 +80,25 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-        },
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              extract: true,
+              spriteFilename: './../icons/icons.svg',
+            },
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                { removeTitle: true },
+                { convertColors: { shorthex: false } },
+                { convertPathData: false },
+              ],
+            },
+          },
+        ],
       },
     ],
   },
@@ -102,10 +117,6 @@ module.exports = {
       filename: './../css/style.css',
     }),
     new CleanWebpackPlugin(['assets']),
-    new HtmlPlugin({
-      filename: path.resolve(__dirname, 'assets/favicons.html'),
-      template: path.resolve(__dirname, 'src/templates/favicons.html'),
-    }),
     new SpriteLoaderPlugin({
       plainSprite: true,
     }),

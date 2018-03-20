@@ -36,8 +36,13 @@
     "stylelint-processor-html": "^1.0.0",
     "stylelint-webpack-plugin": "^0.10.3",
     "svg-sprite-loader": "^3.7.3",
+    "svgo": "^1.0.5",
+    "svgo-loader": "^2.1.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   },
-  "browserslist": ["IE 11", "Last 2 versions"]
+  "browserslist": [
+    "IE 11",
+    "Last 2 versions"
+  ]
 }
