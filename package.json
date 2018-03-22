@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack"
+    "start": "webpack --watch --config webpack.dev.js",
+    "build": "webpack --watch --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -39,10 +39,14 @@
     "svgo": "^1.0.5",
     "svgo-loader": "^2.1.0",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "webpack-cli": "^2.0.12",
+    "webpack-merge": "^4.1.2"
   },
   "browserslist": [
     "IE 11",
     "Last 2 versions"
+  ],
+  "sideEffects": [
+    "*.scss"
   ]
 }
