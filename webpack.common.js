@@ -3,6 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const InjectAssetsWebpackPlugin = require('inject-assets-webpack-plugin');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
@@ -88,7 +89,16 @@ module.exports = {
     //     './**/*.twig',
     //   ],
     // }),
-    new CleanWebpackPlugin(['assets']),
+    new InjectAssetsWebpackPlugin(
+      {
+        filename: `${PATHS.dist}/scripts/service-worker.js`,
+      },
+      [{
+          pattern: '{hash}',
+          type: 'hash',
+      }]
+    ),
+    //new CleanWebpackPlugin(['assets']),
     new ExtractTextPlugin({
       filename: './../css/style.css',
     }),
