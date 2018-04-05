@@ -33,7 +33,7 @@ module.exports = {
     rules: [
       // Run JS through Babel Loader before bundling it to `scripts.js`
       {
-        test: '/scripts/(\w+).js$/',
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
@@ -109,26 +109,4 @@ module.exports = {
     }),
   ],
 };
-
-// const scripts = Object.assign({}, config, {
-//   entry: {
-//     main: `${PATHS.src}/scripts/main.js`,
-//   },
-//   output: {
-//     filename: '[name].js',
-//     path: path.resolve(__dirname, 'assets'),
-//   },
-// });
-
-
-// const serviceWorker = Object.assign({}, config, {
-//   entry: {
-//     'service-worker': `${PATHS.src}/service-worker/service-worker.js`,
-//   },
-//   output: {
-//     filename: '[name].js',
-//     path: path.resolve(__dirname, 'assets'),
-//   },
-// });
-
 
