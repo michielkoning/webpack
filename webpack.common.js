@@ -16,13 +16,15 @@ const settings = {
   proxy: 'http://localhost/wordpress/',
 };
 
+
 module.exports = {
   entry: {
-    main: `${PATHS.src}/main.js`,
+    main: `${PATHS.src}/scripts/main.js`,
+    'service-worker': `${PATHS.src}/service-worker/service-worker.js`,
   },
   output: {
     filename: '[name].js',
-    path: `${PATHS.dist}/scripts`,
+    path: path.resolve(__dirname, 'assets'),
   },
   stats: {
     children: false,
@@ -31,7 +33,7 @@ module.exports = {
     rules: [
       // Run JS through Babel Loader before bundling it to `scripts.js`
       {
-        test: /\.js$/,
+        test: '/scripts/(\w+).js$/',
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
@@ -91,14 +93,14 @@ module.exports = {
     // }),
     new InjectAssetsWebpackPlugin(
       {
-        filename: `${PATHS.dist}/scripts/service-worker.js`,
+        filename: `${PATHS.dist}/service-worker.js`,
       },
       [{
-          pattern: '{hash}',
-          type: 'hash',
-      }]
+        pattern: '{hash}',
+        type: 'hash',
+      }],
     ),
-    //new CleanWebpackPlugin(['assets']),
+    new CleanWebpackPlugin(['assets']),
     new ExtractTextPlugin({
       filename: './../css/style.css',
     }),
@@ -107,3 +109,26 @@ module.exports = {
     }),
   ],
 };
+
+// const scripts = Object.assign({}, config, {
+//   entry: {
+//     main: `${PATHS.src}/scripts/main.js`,
+//   },
+//   output: {
+//     filename: '[name].js',
+//     path: path.resolve(__dirname, 'assets'),
+//   },
+// });
+
+
+// const serviceWorker = Object.assign({}, config, {
+//   entry: {
+//     'service-worker': `${PATHS.src}/service-worker/service-worker.js`,
+//   },
+//   output: {
+//     filename: '[name].js',
+//     path: path.resolve(__dirname, 'assets'),
+//   },
+// });
+
+
