@@ -7,6 +7,10 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
+  optimization: {
+    concatenateModules: true,
+    nodeEnv: 'production',
+  },
   module: {
     rules: [
       {
