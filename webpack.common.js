@@ -13,9 +13,8 @@ const PATHS = {
 const settings = {
   host: 'localhost',
   port: 3333,
-  proxy: 'http://localhost/wordpress/',
+  proxy: 'http://localhost/site/',
 };
-
 
 module.exports = {
   entry: {
@@ -24,7 +23,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'assets'),
+    path: `${PATHS.dist}/scripts`,
   },
   stats: {
     children: false,
@@ -93,7 +92,7 @@ module.exports = {
     // }),
     new InjectAssetsWebpackPlugin(
       {
-        filename: `${PATHS.dist}/service-worker.js`,
+        filename: `${PATHS.dist}/scripts/service-worker.js`,
       },
       [{
         pattern: '{hash}',
