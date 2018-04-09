@@ -42,8 +42,7 @@
     "svgo-loader": "^2.1.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
-    "webpack-merge": "^4.1.2",
-    "webpack-plugin-critical": "^1.0.0"
+    "webpack-merge": "^4.1.2"
   },
   "browserslist": [
     "IE 11",
