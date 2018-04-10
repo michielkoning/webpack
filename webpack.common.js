@@ -20,6 +20,7 @@ const settings = {
 module.exports = {
   entry: {
     main: `${PATHS.src}/scripts/main.js`,
+    assets: `${PATHS.src}/scripts/assets.js`,
     'service-worker': `${PATHS.src}/service-worker/service-worker.js`,
   },
   output: {
@@ -41,7 +42,10 @@ module.exports = {
       // Run JS through Babel Loader before bundling it to `scripts.js`
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          /service-worker/,
+        ],
         loader: 'babel-loader',
         query: {
           presets: [
@@ -74,7 +78,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        exclude: /favicons/,
+        exclude: /favicons/, // dit moet eigenlijk gewoon een regex worden
         use: [
           {
             loader: 'svg-sprite-loader',
@@ -98,6 +102,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(['assets']),
     // new BrowserSyncPlugin({
     //   host: settings.host,
     //   port: settings.port,
@@ -118,7 +123,6 @@ module.exports = {
       }],
     ),
     new StyleLintPlugin(),
-    new CleanWebpackPlugin(['assets']),
     new ExtractTextPlugin({
       filename: './../css/style.css',
     }),
@@ -127,4 +131,3 @@ module.exports = {
     }),
   ],
 };
-
