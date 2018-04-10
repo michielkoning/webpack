@@ -1,7 +1,7 @@
 body {
   background: #000;
 
-  &:before {
-    content: 'dit is gewijzigd'
+  &::before {
+    content: 'dit is gewijzigd';
   }
 }
