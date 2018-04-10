@@ -9,28 +9,50 @@ npm i && npm install -g eslint-plugin-react eslint-plugin-jsx-a11y eslint eslint
 ```
 #!/bin/bash
 jsFiles=$(git diff --cached --name-only | grep '\.jsx\?$')
-cssFiles=$(git diff --cached --name-only | grep '\.jsx\?$')
+cssFiles=$(git diff --cached --name-only | grep '\.scss\?$')
 
-# Prevent ESLint help message if no jsFiles matched
-if [[ $jsFiles = "" ]] ; then
+# Prevent ESLint help message if no jsFiles or cssFiles matched
+if [[ $jsFiles = "" ]] && [[ $cssFiles = "" ]]; then
   exit 0
 fi
 
-# Prevent ESLint help message if no jsFiles matched
-if [[ $cssFiles = "" ]] ; then
-  exit 0
-fi
+jsFailed=0
+cssFailed=0
 
-failed=0
+# Loop through the js files and run the eslint
 for file in ${jsFiles}; do
   git show :$file | eslint $file
   if [[ $? != 0 ]] ; then
-    failed=1
+    jsFailed=1
   fi
 done;
 
-if [[ $failed != 0 ]] ; then
-  echo "🚫🚫🚫 ESLint failed, git commit denied!"
-  exit $failed
+# Show a message when there is an linterror
+if [[ $jsFailed != 0 ]] ; then
+  echo "🚫🚫🚫 ESLint failed"
+fi
+
+# Loop through the scss files and run the eslint
+for file in ${cssFiles}; do
+  git show :$file | stylelint $file
+  if [[ $? != 0 ]] ; then
+    cssFailed=1
+  fi
+done;
+
+# Show a message when there is an eslinterror
+if [[ $jsFailed != 0 ]] ; then
+  echo "🚫🚫🚫 ESLint failed"
+fi
+
+# Show a message when there is an stylelinterror
+if [[ $cssFailed != 0 ]] ; then
+  echo "🚫🚫🚫 Stylelint failed"
+fi
+
+# Cancel the commit when there is any linterror
+if [[ $jsFailed != 0 ]] || [[ $cssFailed != 0 ]]; then
+	echo "git commit denied!"
+	exit 1
 fi
 ```
