@@ -1,5 +1,3 @@
-import 'sass/style.scss';
-
 import { used } from './data.json';
 import { bb } from './functions';
 
