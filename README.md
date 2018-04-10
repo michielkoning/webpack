@@ -40,11 +40,6 @@ for file in ${cssFiles}; do
   fi
 done;
 
-# Show a message when there is an eslinterror
-if [[ $jsFailed != 0 ]] ; then
-  echo "🚫🚫🚫 ESLint failed"
-fi
-
 # Show a message when there is an stylelinterror
 if [[ $cssFailed != 0 ]] ; then
   echo "🚫🚫🚫 Stylelint failed"
@@ -52,6 +47,7 @@ fi
 
 # Cancel the commit when there is any linterror
 if [[ $jsFailed != 0 ]] || [[ $cssFailed != 0 ]]; then
+  git reset
 	echo "git commit denied!"
 	exit 1
 fi
