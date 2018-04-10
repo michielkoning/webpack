@@ -23,8 +23,8 @@ cssFailed=0
 for file in ${jsFiles}; do
   git show :$file | eslint $file
   if [[ $? != 0 ]] ; then
-    git reset $file
     jsFailed=1
+    git reset $file
   fi
 done;
 
@@ -37,8 +37,8 @@ fi
 for file in ${cssFiles}; do
   git show :$file | stylelint $file
   if [[ $? != 0 ]] ; then
-    git reset $file
     cssFailed=1
+    git reset $file
   fi
 done;
 
