@@ -1,8 +1,7 @@
 # webpack
 
 ## Starter script
-npm i
-npm install -g eslint-plugin-react eslint-plugin-jsx-a11y eslint eslint-config-airbnb eslint-plugin-import stylelint
+npm i && npm install -g eslint-plugin-react eslint-plugin-jsx-a11y eslint eslint-config-airbnb eslint-plugin-import stylelint
 
 ## Git hook
 ### commit-msg
