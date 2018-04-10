@@ -4,6 +4,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const InjectAssetsWebpackPlugin = require('inject-assets-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
@@ -24,6 +25,13 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: `${PATHS.dist}/scripts`,
+  },
+  resolve: {
+    alias: {
+      sass: `${PATHS.src}/sass/`,
+      favicons: `${PATHS.src}/favicons/`,
+      icons: `${PATHS.src}/icons/`,
+    },
   },
   stats: {
     children: false,
@@ -56,7 +64,17 @@ module.exports = {
         },
       },
       {
+        test: /\.(svg|png|ico|xml|json|webmanifest)$/,
+        loader: 'file-loader',
+        include: /favicons/,
+        options: {
+          name: '[name].[ext]',
+          outputPath: './../favicons',
+        },
+      },
+      {
         test: /\.svg$/,
+        exclude: /favicons/,
         use: [
           {
             loader: 'svg-sprite-loader',
