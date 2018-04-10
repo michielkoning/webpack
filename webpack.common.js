@@ -117,6 +117,7 @@ module.exports = {
         type: 'hash',
       }],
     ),
+    new StyleLintPlugin(),
     new CleanWebpackPlugin(['assets']),
     new ExtractTextPlugin({
       filename: './../css/style.css',
