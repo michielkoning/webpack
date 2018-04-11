@@ -20,24 +20,7 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        enforce: 'pre',
-        loader: ExtractTextPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: true,
-              },
-            },
-            'postcss-loader',
-            'sass-loader',
-          ],
-        }),
 
-      },
     ],
   },
   plugins: [

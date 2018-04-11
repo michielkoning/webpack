@@ -7,17 +7,7 @@ module.exports = merge(common, {
   devtool: 'source-map',
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        enforce: 'pre',
-        loader: ExtractTextPlugin.extract({
-          use: [
-            'css-loader',
-            'postcss-loader',
-            'sass-loader',
-          ],
-        }),
-      },
+
     ],
   },
 });

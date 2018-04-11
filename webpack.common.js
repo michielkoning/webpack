@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -29,9 +30,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      sass: `${PATHS.src}/sass/`,
       favicons: `${PATHS.src}/favicons/`,
+      fonts: `${PATHS.src}/fonts/`,
       icons: `${PATHS.src}/icons/`,
+      sass: `${PATHS.src}/sass/`,
     },
   },
   stats: {
@@ -75,6 +77,38 @@ module.exports = {
           name: '[name].[ext]',
           outputPath: './../favicons',
         },
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        loader: 'file-loader',
+        include: /fonts/,
+        options: {
+          name: '[name].[ext]',
+          outputPath: './../fonts',
+        },
+      },
+      {
+        test: /\.scss$/,
+        enforce: 'pre',
+        loader: ExtractTextPlugin.extract({
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  ctx: {
+                    testa: 'production',
+                    'css-mqpacker': {
+                      testa: 'production',
+                    },
+                  }
+                }
+              }
+            },
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.svg$/,
