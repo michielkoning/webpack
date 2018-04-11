@@ -4,7 +4,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --env.NODE_ENV='production' --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC",

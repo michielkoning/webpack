@@ -88,29 +88,6 @@ module.exports = {
         },
       },
       {
-        test: /\.scss$/,
-        enforce: 'pre',
-        loader: ExtractTextPlugin.extract({
-          use: [
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  ctx: {
-                    testa: 'production',
-                    'css-mqpacker': {
-                      testa: 'production',
-                    },
-                  },
-                },
-              },
-            },
-            'sass-loader',
-          ],
-        }),
-      },
-      {
         test: /\.svg$/,
         exclude: /favicons/, // dit moet eigenlijk gewoon een regex worden
         use: [

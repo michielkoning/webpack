@@ -1,8 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const webpack = require('webpack');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 const HtmlCriticalPlugin = require('html-critical-webpack-plugin');
 
@@ -19,7 +20,24 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        enforce: 'pre',
+        loader: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                sourceMap: true,
+              },
+            },
+            'postcss-loader',
+            'sass-loader',
+          ],
+        }),
 
+      },
     ],
   },
   plugins: [
