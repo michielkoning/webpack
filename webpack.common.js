@@ -102,9 +102,9 @@ module.exports = {
                     'css-mqpacker': {
                       testa: 'production',
                     },
-                  }
-                }
-              }
+                  },
+                },
+              },
             },
             'sass-loader',
           ],

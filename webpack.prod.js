@@ -3,9 +3,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
-const HtmlCriticalPlugin = require("html-critical-webpack-plugin");
+const HtmlCriticalPlugin = require('html-critical-webpack-plugin');
 
 const PATHS = {
   src: path.resolve(__dirname, 'src'),
