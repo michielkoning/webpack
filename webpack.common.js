@@ -1,7 +1,7 @@
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const InjectAssetsWebpackPlugin = require('inject-assets-webpack-plugin');
@@ -12,11 +12,11 @@ const PATHS = {
   dist: path.resolve(__dirname, 'assets'),
 };
 
-const settings = {
-  host: 'localhost',
-  port: 3333,
-  proxy: 'http://localhost/site/',
-};
+// const settings = {
+//   host: 'localhost',
+//   port: 3333,
+//   proxy: 'http://localhost/site/',
+// };
 
 module.exports = {
   entry: {
