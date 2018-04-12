@@ -21,7 +21,7 @@ cssFailed=0
 
 # Loop through the js files and run the eslint
 for file in ${jsFiles}; do
-  git show :$file | eslint $file
+  git show :$file | eslint $file --fix
   if [[ $? != 0 ]] ; then
     jsFailed=1
     git reset $file
@@ -33,9 +33,9 @@ if [[ $jsFailed != 0 ]] ; then
   echo "🚫🚫🚫 ESLint failed"
 fi
 
-# Loop through the scss files and run the eslint
+# Loop through the scss files and run the stylelint
 for file in ${cssFiles}; do
-  git show :$file | stylelint $file
+  git show :$file | stylelint $file --fix
   if [[ $? != 0 ]] ; then
     cssFailed=1
     git reset $file
